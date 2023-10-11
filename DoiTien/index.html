@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <th><label for="Amount">Amount</label></th>
+          <th>From Currency</th>
+          <th>To Currency</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><input type="text" id="Amount" /></td>
+          <td>
+            <select id="From">
+              <option value="VND">VND</option>
+              <option value="USD">USD</option>
+            </select>
+          </td>
+          <td>
+            <select id="To">
+              <option value="VND">VND</option>
+              <option value="USD">USD</option>
+            </select>
+          </td>
+          <td><button onclick="changeMoney()">Convert</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br />
+    <p id="Result"></p>
+
+    <script>
+      function changeMoney() {
+        const amount = parseInt(document.getElementById("Amount").value);
+        const fromCrr = document.getElementById("From").value;
+        const toCrr = document.getElementById("To").value;
+
+        let result = 0;
+        if (fromCrr === toCrr) {
+          result = amount;
+        } else if (fromCrr === "VND" && toCrr === "USD") {
+          result = amount * 0.000041;
+        } else if (fromCrr === "USD" && toCrr === "VND") {
+          result = amount * 24000;
+        }
+
+        const resultElement = document.getElementById("Result");
+        resultElement.innerHTML = `Kết quả: ${amount} ${fromCrr} = ${result} ${toCrr}`;
+      }
+    </script>
+  </body>
+</html>
